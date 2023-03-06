@@ -12,6 +12,8 @@ const Header = () => {
   const { setLoggedIn, loggedIn } = useLoginStore();
   const currentLocation = useLocation();
 
+  console.log(currentLocation);
+
   return (
     <MainHeader>
       <MainNav shrinkHeader={shrinkHeader}>

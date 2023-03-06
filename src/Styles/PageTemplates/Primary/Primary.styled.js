@@ -26,8 +26,8 @@ export const StyledPrimary = styled.main`
   }
 
   @media all and (min-width: ${(props) => props.theme.breakPoints.desktop.value}) {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 0.5fr);
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, auto);
     grid-template-areas:
       "A A A A"
       "B B B B";
