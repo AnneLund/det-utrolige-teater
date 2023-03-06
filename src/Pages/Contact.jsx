@@ -1,6 +1,5 @@
 import React from "react";
 import { Page } from "../Layout/Page";
-import TestPage from "./TestPage";
 
 const Contact = () => {
   return (

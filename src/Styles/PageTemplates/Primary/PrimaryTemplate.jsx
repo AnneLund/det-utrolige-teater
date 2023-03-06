@@ -1,17 +1,15 @@
 import React from "react";
 import { StyledPrimary } from "./Primary.styled";
 import { Page } from "../../../Layout/Page";
-import Breadcrumbs from "../../../Components/Router/BreadCrumbs/Breadcrumbs";
+import RandomEvents from "../../../Components/Partials/RandomEvents";
 
 export const PrimaryTemplate = (props) => {
   return (
     <StyledPrimary>
-      <div>A</div>
-      <div>B</div>
-      <Page title="Forside" description="Fed forside">
+      <Page title="Forside" description="Information og nyheder fra Det Utrolige Teater">
         {props.children}
       </Page>
-      <div>D</div>
+      <RandomEvents />
     </StyledPrimary>
   );
 };

@@ -1,13 +1,11 @@
 import React from "react";
-import Form from "../Components/Partials/Form";
-import Rating from "../Components/Partials/Rating";
+import HighlightedEvent from "../Components/Partials/HighlightedEvent";
 import PrimaryTemplate from "../Styles/PageTemplates/Primary/PrimaryTemplate";
 
 const Home = () => {
   return (
     <PrimaryTemplate>
-      <Form />
-      <Rating />
+      <HighlightedEvent />
     </PrimaryTemplate>
   );
 };

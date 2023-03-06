@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 
 export const MainNav = styled.nav`
   display: flex;
-  background-color: ${(props) => props.theme.colors.background};
   z-index: 800;
   height: 11vh;
   flex-wrap: wrap;
   padding: ${(props) => (props.shrinkHeader ? "0.2rem" : "1rem")} 2rem;
   transition: padding 500ms ease;
   position: relative;
+  text-transform: uppercase;
 
   .burger {
     overflow: hidden;
@@ -26,6 +26,10 @@ export const MainNav = styled.nav`
       z-index: 50000;
       max-height: ${({ isOpen }) => (isOpen ? "auto" : "0")};
     }
+  }
+
+  img {
+    width: 200px;
   }
 
   li {
@@ -108,9 +112,8 @@ export const NavLink = styled(Link)`
 export const Menu = styled.ul`
   overflow: hidden;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5em;
+  flex-direction: column;
+  row-gap: 2em;
   margin-left: auto;
   margin-right: 50px;
 
@@ -124,5 +127,10 @@ export const Menu = styled.ul`
     position: relative;
     margin: 0;
     height: ${({ isOpen }) => (isOpen ? "90vh" : "0")};
+  }
+
+  div {
+    display: flex;
+    gap: 1.5em;
   }
 `;

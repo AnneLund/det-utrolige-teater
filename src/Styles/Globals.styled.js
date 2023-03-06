@@ -19,11 +19,20 @@ export const Globals = createGlobalStyle`${css`
     min-height: 100%;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto 1fr auto;
+    grid-template-rows: auto 1fr auto;
+    font-family: "Titillium Web", sans-serif;
   }
 
   img {
     width: 100%;
     display: block;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: "Playfair Display", serif;
+    font-weight: 100;
+    color: ${(props) => props.theme.colors.primary};
   }
 `}`;
