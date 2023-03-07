@@ -1,39 +1,10 @@
 import React from "react";
-import styled from "styled-components";
 import { ImFacebook2, ImLinkedin, ImInstagram } from "react-icons/im";
-
-const MainFooter = styled.footer`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: auto auto;
-  background-color: ${(props) => props.theme.colors.tertiary};
-  padding: 2em;
-  color: white;
-
-  h4 {
-    text-transform: uppercase;
-    font-size: 1.5em;
-    margin: 0.5em 0;
-  }
-
-  li {
-    font-size: 1.3em;
-  }
-
-  .map {
-    margin-top: 1em;
-  }
-
-  div {
-    display: flex;
-    gap: 1em;
-    justify-content: right;
-  }
-`;
+import { MyFooter } from "./FooterStyled";
 
 const Footer = () => {
   return (
-    <MainFooter>
+    <MyFooter>
       <article>
         <h4>Adresse</h4>
         <ul>
@@ -75,7 +46,7 @@ const Footer = () => {
         <ImInstagram size={40} />
         <ImLinkedin size={40} />
       </div>
-    </MainFooter>
+    </MyFooter>
   );
 };
 

@@ -6,6 +6,9 @@ import EventDetails from "../../Pages/Events/EventDetails";
 import Events from "../../Pages/Events/Events";
 import Home from "../../Pages/Home";
 import Login from "../../Pages/Login/Login";
+import BuyTicket from "../Partials/Shop/BuyTicket";
+import SubmitOrder from "../Partials/Shop/SubmitOrder";
+import Thankyou from "../Partials/Shop/Thankyou";
 
 const Router = () => {
   return (
@@ -15,6 +18,9 @@ const Router = () => {
       <Route path="/actors" element={<Actors />} />
       <Route path="/actor/:id" element={<ActorDetails />} />
       <Route path="/events/:id" element={<EventDetails />} />
+      <Route path="/event/buyticket" element={<BuyTicket />} />
+      <Route path="/event/buyticket/submit" element={<SubmitOrder />} />
+      <Route path="/thankyou" element={<Thankyou />} />
       {/* <Route path="/products" element={<Categories />}>
         <Route path="/products/:id" element={<Products />} />
       </Route>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Button from "./Buttons/ButtonOne";
 import { Card } from "./Card/CardStyled";
@@ -22,7 +23,9 @@ const RandomEvents = () => {
           </div>
           <footer>
             <Button readmore={true}>Læs mere</Button>
-            <Button>Køb billet</Button>
+            <Button>
+              <Link to="/event/buyticket">Køb billet</Link>
+            </Button>
           </footer>
         </figcaption>
         <picture>

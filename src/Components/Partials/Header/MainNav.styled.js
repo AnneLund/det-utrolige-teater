@@ -34,9 +34,7 @@ export const MainNav = styled.nav`
     left: 0;
     margin: 1em;
     @media (max-width: ${(props) => props.theme.breakPoints.tablet.value}) {
-      width: 250px;
-      top: 35%;
-      left: 33%;
+      display: none;
     }
   }
 
@@ -102,11 +100,11 @@ export const NavLink = styled(Link)`
   color: black;
 
   @media (max-width: ${(props) => props.theme.breakPoints.tablet.value}) {
-    font-size: 2em;
+    font-size: 1.5em;
   }
 
   @media (max-width: ${(props) => props.theme.breakPoints.mobile.value}) {
-    font-size: 3em;
+    font-size: 2em;
   }
 `;
 

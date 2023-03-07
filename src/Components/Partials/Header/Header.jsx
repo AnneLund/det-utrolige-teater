@@ -5,6 +5,8 @@ import { useLoginStore } from "../../../Pages/Login/useLoginStore";
 import logo from "../../../Assets/Images/logo.svg";
 import SearchBar from "../Searchbar/SearchBar";
 import { useLocation } from "react-router-dom";
+import OverLay from "../../../Pages/Login/Overlay";
+import Home from "../../../Pages/Home";
 
 const Header = () => {
   const { isOpen, setIsOpen } = useIsOpenNavStore();
@@ -12,7 +14,11 @@ const Header = () => {
   const { setLoggedIn, loggedIn } = useLoginStore();
   const currentLocation = useLocation();
 
-  console.log(currentLocation);
+  const [showOverlay, setShowOverlay] = useState(false);
+
+  const handleButtonClick = () => {
+    setShowOverlay(!showOverlay);
+  };
 
   return (
     <MainHeader>
@@ -23,7 +29,7 @@ const Header = () => {
           <span></span>
         </Hamburger>
 
-        <Menu roll isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
+        <Menu isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
           <SearchBar />
           <img src={logo} alt="logo" />
           <div>
@@ -55,12 +61,15 @@ const Header = () => {
                   onClick={() => {
                     setLoggedIn(false, "", "", "");
                   }}>
-                  <NavLink>Log ud</NavLink>
+                  <NavLink onClick={handleButtonClick}>Log ud</NavLink>
                 </li>
               </>
             ) : (
               <li onClick={() => setIsOpen(!isOpen)}>
-                <NavLink to="/login">Login</NavLink>
+                <NavLink to="#">
+                  <span onClick={handleButtonClick}>Login</span>
+                </NavLink>
+                {showOverlay ? <OverLay /> : null}
               </li>
             )}
           </div>

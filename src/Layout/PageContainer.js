@@ -26,7 +26,7 @@ export const PageContainer = styled.section`
     padding: 2em;
 
     h1 {
-      font-size: 9vw;
+      font-size: 3vw;
     }
   }
 `;

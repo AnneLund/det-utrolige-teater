@@ -36,6 +36,19 @@ export const Globals = createGlobalStyle`${css`
     color: ${(props) => props.theme.colors.primary};
   }
 
+  h4,
+  h5 {
+    text-transform: uppercase;
+  }
+
+  h4 {
+    font-size: 1.5em;
+  }
+
+  h5 {
+    font-size: 1.2em;
+  }
+
   a {
     text-decoration: none;
     color: white;

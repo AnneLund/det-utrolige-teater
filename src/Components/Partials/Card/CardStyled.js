@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Card = styled.figure`
   height: ${(props) => (props.listitem ? "20vh" : "auto")};
   display: flex;
-  margin: 1em auto;
+  margin: 0 auto;
   justify-content: space-between;
   flex-direction: ${(props) => (props.column ? "column-reverse" : props.listitem ? "row-reverse" : "row")};
   border: 1px solid ${(props) => props.theme.colors.secondary};

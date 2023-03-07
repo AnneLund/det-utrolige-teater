@@ -41,7 +41,10 @@ const Events = () => {
                   <Button listitem={true} readmore={true}>
                     <Link to={`/events/${""}`}>Læs mere</Link>
                   </Button>
-                  <Button listitem={true}>Køb billet</Button>
+
+                  <Button listitem={true}>
+                    <Link to="/event/buyticket">Køb billet</Link>
+                  </Button>
                 </div>
                 <div className="list-item">
                   <p className="location">Lorem ipsumrepellat sapiente</p>

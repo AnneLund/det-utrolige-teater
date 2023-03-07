@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const LoginFormStyled = styled.form`
-  margin: 1em 0;
+  margin: 1em;
   input {
     padding: 0.5em;
     font-size: 1.2em;

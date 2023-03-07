@@ -1,9 +1,6 @@
 import { useState } from "react";
 import { useLoginStore } from "./useLoginStore";
 import useFlashMessageStore from "../../Components/FlashMessages/useFlashMessageStore";
-import Transitions from "../../Styles/Transition";
-import { Navigate } from "react-router-dom";
-import { Page } from "../../Layout/Page";
 import { LoginFormStyled } from "./LoginFormStyled";
 import LoginButton from "./LoginButton";
 
@@ -57,20 +54,6 @@ const Login = () => {
       console.error("Error:", error);
     }
   };
-
-  // .then((response) => response.json())
-  // .then((data) => {
-  //   if (data.status === "Ok") {
-  //     setFlashMessage("Velkommen");
-  //     data.user.user_id = data.user_id;
-  //     setLoggedIn(true, data.user, data.username, data.access_token);
-  //   } else {
-  //     setFlashMessage("Ingen brugere med disse kriterier");
-  //   }
-  // })
-  // .catch((error) => {
-  //   console.error("Error:", error);
-  // });
 
   return !loggedIn ? (
     <LoginFormStyled onSubmit={LogMeIn}>
