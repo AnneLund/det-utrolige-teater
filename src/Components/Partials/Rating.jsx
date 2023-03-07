@@ -34,9 +34,8 @@ const Rating = () => {
 
   return (
     <div>
-      <h3>Rate this item:</h3>
       <Stars>{renderStars()}</Stars>
-      <p>You rated this item: {rating} stars</p>
+      {/* <p>You rated this item: {rating} stars</p> */}
     </div>
   );
 };

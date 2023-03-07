@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useLoginStore } from "./useLoginStore";
 import useFlashMessageStore from "../../Components/FlashMessages/useFlashMessageStore";
-import { Form_Styled } from "../../Styles/Form_Styled";
 import Transitions from "../../Styles/Transition";
 import { Navigate } from "react-router-dom";
 import { Page } from "../../Layout/Page";
+import { LoginFormStyled } from "./LoginFormStyled";
+import LoginButton from "./LoginButton";
 
 const Login = () => {
   const { setLoggedIn, loggedIn } = useLoginStore();
@@ -72,22 +73,14 @@ const Login = () => {
   // });
 
   return !loggedIn ? (
-    <Transitions>
-      <Page>
-        <header>
-          <h2>Log ind</h2>
-        </header>
-
-        <Form_Styled onSubmit={LogMeIn}>
-          <input type="text" name="username" onChange={(e) => handleChange(e)} />
-          <input type="password" name="password" onChange={(e) => handleChange(e)} />
-          <button>Log ind</button>
-        </Form_Styled>
-      </Page>
-    </Transitions>
-  ) : (
-    <Navigate to="/" />
-  );
+    <LoginFormStyled onSubmit={LogMeIn}>
+      <input type="text" name="username" onChange={(e) => handleChange(e)} />
+      <div>
+        <input type="password" name="password" onChange={(e) => handleChange(e)} />
+        <LoginButton>Login</LoginButton>
+      </div>
+    </LoginFormStyled>
+  ) : null;
 };
 
 export default Login;

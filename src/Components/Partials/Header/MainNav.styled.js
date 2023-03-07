@@ -19,7 +19,7 @@ export const MainNav = styled.nav`
     gap: 1.5em;
     position: relative;
 
-    @media (max-width: 1000px) {
+    @media (max-width: ${(props) => props.theme.breakPoints.tablet.value}) {
       flex-direction: column;
       transition: max-height 0.3 ease-in;
       width: 100%;
@@ -29,7 +29,15 @@ export const MainNav = styled.nav`
   }
 
   img {
-    width: 200px;
+    width: 250px;
+    position: absolute;
+    left: 0;
+    margin: 1em;
+    @media (max-width: ${(props) => props.theme.breakPoints.tablet.value}) {
+      width: 250px;
+      top: 35%;
+      left: 33%;
+    }
   }
 
   li {
@@ -39,25 +47,7 @@ export const MainNav = styled.nav`
     }
   }
 
-  .cart {
-    display: flex;
-    justify-content: center;
-    span {
-      margin-right: -10px;
-    }
-  }
-
-  button {
-    padding: 0.5em 1.5em;
-    background-color: ${(props) => props.theme.colors.button2};
-    border: 1px #1f5e5b solid;
-    border-radius: 5px;
-    a {
-      color: black;
-    }
-  }
-
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: ${(props) => props.theme.breakPoints.tablet.value}) {
     padding: 0;
     display: flex;
     justify-content: flex-end;
@@ -69,7 +59,7 @@ export const MainNav = styled.nav`
     }
   }
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: ${(props) => props.theme.breakPoints.tablet.value}) {
     width: 100%;
     display: flex;
     flex-direction: flex-end;
@@ -81,7 +71,7 @@ export const MainHeader = styled.header`
   grid-gap: 1em;
   align-items: center;
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: ${(props) => props.theme.breakPoints.tablet.value}) {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -94,12 +84,15 @@ export const Hamburger = styled.div`
   span {
     height: 5px;
     width: 25px;
-    background-color: white;
+    background-color: ${(props) => props.theme.colors.secondary};
     margin-bottom: 4px;
     border-radius: 5px;
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: ${(props) => props.theme.breakPoints.tablet.value}) {
       display: flex;
+      height: 15px;
+      width: 60px;
+      margin-bottom: 7px;
     }
   }
 `;
@@ -107,6 +100,14 @@ export const Hamburger = styled.div`
 export const NavLink = styled(Link)`
   text-decoration: none;
   color: black;
+
+  @media (max-width: ${(props) => props.theme.breakPoints.tablet.value}) {
+    font-size: 2em;
+  }
+
+  @media (max-width: ${(props) => props.theme.breakPoints.mobile.value}) {
+    font-size: 3em;
+  }
 `;
 
 export const Menu = styled.ul`
@@ -125,12 +126,15 @@ export const Menu = styled.ul`
     backdrop-filter: blur(20px);
     z-index: 50000;
     position: relative;
-    margin: 0;
-    height: ${({ isOpen }) => (isOpen ? "90vh" : "0")};
+    margin: 4em 0 0 0;
+    height: ${({ isOpen }) => (isOpen ? "200vh" : "0")};
   }
 
   div {
     display: flex;
     gap: 1.5em;
+    @media (max-width: ${(props) => props.theme.breakPoints.tablet.value}) {
+      flex-direction: column;
+    }
   }
 `;

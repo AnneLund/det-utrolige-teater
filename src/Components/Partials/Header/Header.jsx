@@ -23,11 +23,9 @@ const Header = () => {
           <span></span>
         </Hamburger>
 
-        <img src={logo} alt="logo" />
-
         <Menu roll isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
           <SearchBar />
-
+          <img src={logo} alt="logo" />
           <div>
             <li onClick={() => setIsOpen(!isOpen)}>
               <NavLink to="/" style={currentLocation.pathname === "/" ? { color: `${(props) => props.theme.colors.primary}` } : { color: "#000000" }}>

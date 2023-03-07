@@ -5,7 +5,7 @@ export const Flashmessage = styled.span`
     display: block;
     position: fixed;
     z-index: 1200;
-    background-color: #15568495;
+    background-color: ${(props) => props.theme.colors.secondary};
     top: 30%;
     left: 50%;
     transform: translateX(-50%);
@@ -17,12 +17,11 @@ export const Flashmessage = styled.span`
     border-radius: 5px;
     font-weight: 900;
     text-transform: uppercase;
-  
 
-  &:last-of-type {
-    display: block;
+    &:last-of-type {
+      display: block;
+    }
   }
-}
 
   @keyframes floatingAlert {
     0% {

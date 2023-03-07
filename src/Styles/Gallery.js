@@ -10,6 +10,7 @@ export const Gallery = styled.div`
 
   picture {
     img {
+      border: none;
       width: 100%;
       object-fit: cover;
       aspect-ratio: 1/1;

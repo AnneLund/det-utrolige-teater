@@ -1,8 +1,8 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import About from "../../Pages/About";
+import ActorDetails from "../../Pages/Actors/ActorDetails";
 import Actors from "../../Pages/Actors/Actors";
-import Contact from "../../Pages/Contact";
+import EventDetails from "../../Pages/Events/EventDetails";
 import Events from "../../Pages/Events/Events";
 import Home from "../../Pages/Home";
 import Login from "../../Pages/Login/Login";
@@ -13,6 +13,8 @@ const Router = () => {
       <Route path="/" element={<Home />} />
       <Route path="/events" element={<Events />} />
       <Route path="/actors" element={<Actors />} />
+      <Route path="/actor/:id" element={<ActorDetails />} />
+      <Route path="/events/:id" element={<EventDetails />} />
       {/* <Route path="/products" element={<Categories />}>
         <Route path="/products/:id" element={<Products />} />
       </Route>

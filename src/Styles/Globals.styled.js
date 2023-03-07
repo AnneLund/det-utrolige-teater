@@ -35,4 +35,9 @@ export const Globals = createGlobalStyle`${css`
     font-weight: 100;
     color: ${(props) => props.theme.colors.primary};
   }
+
+  a {
+    text-decoration: none;
+    color: white;
+  }
 `}`;

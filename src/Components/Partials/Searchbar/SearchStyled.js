@@ -14,6 +14,15 @@ export const SearchBarStyled = styled.div`
     input {
       padding: 0.5em;
       width: 100%;
+      border: black solid 1px;
+
+      @media screen and (max-width: ${(props) => props.theme.breakPoints.tablet.value}) {
+        font-size: 1em;
+      }
+
+      @media screen and (max-width: ${(props) => props.theme.breakPoints.mobile.value}) {
+        font-size: 1.7em;
+      }
     }
 
     //Søge-ikon
@@ -31,7 +40,7 @@ export const SearchBarStyled = styled.div`
 
     @media screen and (max-width: ${(props) => props.theme.breakPoints.tablet.value}) {
       justify-content: center;
-      width: 31%;
+      width: 50%;
       margin: 0 auto;
     }
   }
