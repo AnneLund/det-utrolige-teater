@@ -11,17 +11,27 @@ const MyButton = styled.button`
   text-transform: uppercase;
   font-family: "Titillium Web", sans-serif;
   font-size: 1.3em;
+  position: ${(props) => (props.right ? "absolute" : null)};
+  right: -1em;
+  bottom: -8em;
   font-weight: 600;
+  float: ${(props) => (props.right ? "right" : null)};
   cursor: pointer;
-  background-color: ${(props) => props.theme.colors.primary};
+  background-color: ${(props) => props.theme.colors.secondary};
   &:hover {
     background-color: #00000099;
     transition: 300ms ease-in-out;
   }
+
+  @media screen and (max-width: ${(props) => props.theme.breakPoints.tablet.value}) {
+    position: ${(props) => (props.right ? "relative" : null)};
+    right: 0;
+    bottom: inherit;
+  }
 `;
 
 const SendButton = (props) => {
-  return <MyButton>{props.children}</MyButton>;
+  return <MyButton right={props.right}>{props.children}</MyButton>;
 };
 
 export default SendButton;

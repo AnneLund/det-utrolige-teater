@@ -58,17 +58,15 @@ const SearchBar = () => {
   };
 
   return (
-    <>
-      <SearchBarStyled>
-        <div>
-          <input placeholder="Indtast søgeord" type="text" value={searchTerm} onChange={handleChange} />
+    <SearchBarStyled>
+      <div>
+        <input placeholder="Indtast søgeord" type="text" value={searchTerm} onChange={handleChange} />
 
-          <button onClick={handleClick}>
-            <BiSearch size={20} />
-          </button>
-        </div>
-      </SearchBarStyled>
-    </>
+        <button onClick={handleClick}>
+          <BiSearch size={20} />
+        </button>
+      </div>
+    </SearchBarStyled>
   );
 };
 

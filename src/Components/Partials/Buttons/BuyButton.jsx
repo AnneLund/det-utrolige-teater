@@ -12,7 +12,7 @@ const MyButton = styled.button`
   font-size: 1.3em;
   font-weight: 600;
   cursor: pointer;
-  background-color: ${(props) => props.theme.colors.secondary};
+  background-color: ${(props) => props.theme.colors.primary};
   &:hover {
     background-color: #00000099;
     transition: 300ms ease-in-out;

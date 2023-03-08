@@ -18,10 +18,15 @@ export const useShoppingCardStore = create(
           ],
         })),
 
-      increaseCartQuantity: (id, price, quantity, title, image) =>
+      increaseCartQuantity: (id, price, quantity, title, image, stage_name, startdate) =>
         set((state) => {
           if (state.cartItems.find((item) => item.id === id) == null) {
-            return { cartItems: [...state.cartItems, { id: id, image: image, price: price, amount: 1 * quantity, title: title }] };
+            return {
+              cartItems: [
+                ...state.cartItems,
+                { id: id, price: price, amount: 1 * quantity, title: title, image: image, stage_name, startdate: startdate },
+              ],
+            };
           } else {
             //**if item exists by id, increase the amount */
             return {
@@ -43,10 +48,15 @@ export const useShoppingCardStore = create(
 
       //**FUNTION START */
 
-      decreaseCartQuantity: (id, price, quantity, title, image) =>
+      decreaseCartQuantity: (id, price, quantity, title, image, stage_name, startdate) =>
         set((state) => {
           if (state.cartItems.find((item) => item.id === id) == null) {
-            return { cartItems: [...state.cartItems, { id: id, image: image, price: price, amount: 1 * quantity, title: title }] };
+            return {
+              cartItems: [
+                ...state.cartItems,
+                { id: id, price: price, amount: 1 * quantity, title: title, image: image, stage_name, startdate: startdate },
+              ],
+            };
           } else {
             //**if item exists by id, increase the amount */
             return {

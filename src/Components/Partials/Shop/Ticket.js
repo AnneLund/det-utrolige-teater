@@ -6,6 +6,14 @@ export const Ticket = styled.figure`
   justify-content: space-between;
   border: 1px solid ${(props) => props.theme.colors.secondary};
 
+  picture {
+    width: 50%;
+
+    @media (max-width: ${(props) => props.theme.breakPoints.tablet.value}) {
+      width: 100%;
+    }
+  }
+
   img {
     border: 10px solid ${(props) => props.theme.colors.secondary};
     object-fit: cover;

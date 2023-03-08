@@ -47,6 +47,7 @@ export const Globals = createGlobalStyle`${css`
 
   h5 {
     font-size: 1.2em;
+    font-weight: 100;
   }
 
   a {

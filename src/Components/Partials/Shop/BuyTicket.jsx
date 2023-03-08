@@ -1,36 +1,44 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Page } from "../../../Layout/Page";
-import BuyButton from "../Buttons/BuyButton";
 import ContactForm from "../ContactForm";
 import Table from "./Table";
 import { Ticket } from "./Ticket";
+import useGetListItemById from "../../Hooks/useGetListItemById";
 
 const BuyTicket = () => {
+  const { id } = useParams();
+  const { state: events } = useGetListItemById("events", id);
+
   return (
     <Page title="Køb billetter">
-      <Ticket>
-        <picture>
-          <img src="https://i1.wp.com/www.slntechnologies.com/wp-content/uploads/2017/08/ef3-placeholder-image.jpg?ssl=1" alt="" />
-        </picture>
-        <figcaption>
-          <header>
-            <h1>Køb billet</h1>
-          </header>
+      {events && events.item ? (
+        <Ticket>
+          <picture>
+            <img src={events.item.image} alt={events.item.title} />
+          </picture>
+          <figcaption>
+            <header>
+              <h1>Køb billet</h1>
+            </header>
 
-          <div className="location">
-            <h4>Titel</h4>
-            <h5>Tid og sted</h5>
-          </div>
-
-          <ContactForm />
-        </figcaption>
-      </Ticket>
-      <div className="button">
-        <BuyButton>
-          <Link to="/thankyou">Godkend bestilling</Link>
-        </BuyButton>
-      </div>
+            <div className="location">
+              <h4>{events.item.title}</h4>
+              <h5>
+                {events.item.stage_name}
+                <span>
+                  {new Date(events.item.startdate).toLocaleDateString("da-DK", { month: "long", day: "numeric" })}
+                  &nbsp;
+                </span>
+                KL. {events.item.starttime}
+              </h5>
+            </div>
+            <ContactForm item={events.item} />
+          </figcaption>
+        </Ticket>
+      ) : (
+        <p>Indlæser..</p>
+      )}
     </Page>
   );
 };

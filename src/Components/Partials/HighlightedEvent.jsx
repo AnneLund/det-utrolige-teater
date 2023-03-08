@@ -1,23 +1,38 @@
 import React from "react";
 import { Card } from "./Card/CardStyled";
+import useGetListItemsByEndPoint from "../Hooks/useGetListItemsByEndPoint";
 
 const HighlightedEvent = () => {
+  const { state: events } = useGetListItemsByEndPoint("events");
+
   return (
-    <Card column={false}>
-      <figcaption>
-        <div>
-          <p className="location">Lorem ipsumrepellat sapiente</p>
-          <h4 className="date">Lorem ipsum dolor sit amet.</h4>
-        </div>
-        <div>
-          <h2>Lorem ipsum dolor sit amet.</h2>
-          <p className="category">Lorem ipsum dolor sit amet.</p>
-        </div>
-      </figcaption>
-      <picture>
-        <img src="https://i1.wp.com/www.slntechnologies.com/wp-content/uploads/2017/08/ef3-placeholder-image.jpg?ssl=1" alt="" />
-      </picture>
-    </Card>
+    <>
+      {events && events.items ? (
+        <>
+          <Card column={false}>
+            <figcaption>
+              <div>
+                <p className="location">{events.items[1].stage_name}</p>
+                <h4 className="date">
+                  {new Date(events.items[1].startdate).toLocaleDateString("da-DK", { month: "long", day: "numeric" })}
+                  &nbsp;-&nbsp;
+                  {new Date(events.items[1].stopdate).toLocaleDateString("da-DK", { year: "numeric", month: "long", day: "numeric" })}
+                </h4>
+              </div>
+              <div>
+                <h2>{events.items[1].title}</h2>
+                <p className="category">{events.items[1].genre}</p>
+              </div>
+            </figcaption>
+            <picture>
+              <img src={events.items[1].image} alt={events.items[1].title} />
+            </picture>
+          </Card>
+        </>
+      ) : (
+        <p>Kunne ikke hente data..</p>
+      )}
+    </>
   );
 };
 

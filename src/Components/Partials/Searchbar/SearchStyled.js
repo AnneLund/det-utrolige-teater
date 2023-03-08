@@ -18,6 +18,7 @@ export const SearchBarStyled = styled.div`
 
       @media screen and (max-width: ${(props) => props.theme.breakPoints.tablet.value}) {
         font-size: 1em;
+        padding: 3vw;
       }
 
       @media screen and (max-width: ${(props) => props.theme.breakPoints.mobile.value}) {
@@ -40,8 +41,14 @@ export const SearchBarStyled = styled.div`
 
     @media screen and (max-width: ${(props) => props.theme.breakPoints.tablet.value}) {
       justify-content: center;
-      width: 50%;
+      width: 70%;
       margin: 0 auto;
+
+      svg {
+        width: 35px;
+        height: 35px;
+        margin: 0.2em;
+      }
     }
   }
 
@@ -64,5 +71,6 @@ export const SearchBarStyled = styled.div`
   @media screen and (max-width: ${(props) => props.theme.breakPoints.tablet.value}) {
     width: 100%;
     flex-direction: column-reverse;
+    margin-top: 1em;
   }
 `;

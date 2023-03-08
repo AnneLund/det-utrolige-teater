@@ -17,9 +17,9 @@ const Router = () => {
       <Route path="/events" element={<Events />} />
       <Route path="/actors" element={<Actors />} />
       <Route path="/actor/:id" element={<ActorDetails />} />
-      <Route path="/events/:id" element={<EventDetails />} />
-      <Route path="/event/buyticket" element={<BuyTicket />} />
-      <Route path="/event/buyticket/submit" element={<SubmitOrder />} />
+      <Route path="/event/:id" element={<EventDetails />} />
+      <Route path="/event/buyticket/:id" element={<BuyTicket />} />
+      <Route path="/event/submit/:id" element={<SubmitOrder />} />
       <Route path="/thankyou" element={<Thankyou />} />
       {/* <Route path="/products" element={<Categories />}>
         <Route path="/products/:id" element={<Products />} />

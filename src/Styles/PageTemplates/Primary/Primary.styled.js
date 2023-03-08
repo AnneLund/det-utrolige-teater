@@ -8,7 +8,7 @@ justify-content: center;
 `;
 
 export const StyledPrimary = styled.main`
-  width: 100%;
+  width: 75vw;
   margin: 0 auto;
   display: grid;
   padding: 2em;
@@ -36,6 +36,7 @@ export const StyledPrimary = styled.main`
 
   > :nth-child(1) {
     grid-area: A;
+    background-color: green;
     ${All};
   }
 

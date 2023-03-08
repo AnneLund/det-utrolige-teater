@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import AppService from "../Appservices/Appservice";
 
-const useGetProductById = (endpoint, id) => {
+const useGetListItemById = (endpoint, id) => {
   const [state, setState] = useState([]);
 
   useEffect(() => {
@@ -25,4 +25,4 @@ const useGetProductById = (endpoint, id) => {
   return { state };
 };
 
-export default useGetProductById;
+export default useGetListItemById;

@@ -2,10 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 const MyButton = styled.button`
-  padding: 0.5em 0.8em;
   margin-left: 20px;
-  width: 170px;
-  height: 80px;
+  width: ${(props) => (props.listitem ? "120px" : "170px")};
+  height: ${(props) => (props.listitem ? "50px" : "80px")};
   border: none;
   color: white;
   text-transform: uppercase;
@@ -18,11 +17,17 @@ const MyButton = styled.button`
     background-color: #00000099;
     transition: 300ms ease-in-out;
   }
+
+  @media (max-width: ${(props) => props.theme.breakPoints.tablet.value}) {
+    font-size: 2.5vw;
+    width: 120px;
+    height: 50px;
+  }
 `;
 
 const Button = (props) => {
   return (
-    <MyButton readmore={props.readmore} secondary={props.secondary}>
+    <MyButton readmore={props.readmore} secondary={props.secondary} listitem={props.listitem}>
       {props.children}
     </MyButton>
   );

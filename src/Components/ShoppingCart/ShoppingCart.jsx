@@ -17,15 +17,10 @@ const ShoppingCart = () => {
 
   return (
     <Shop>
-      <h2> Indkøbskurv</h2>
-
       {loggedIn ? (
         <>
-          {cartItems.map((item, i) => (
+          {/* {cartItems.map((item, i) => (
             <Cart key={i}>
-              <picture>
-                <img src={item.image} alt={item.title} />
-              </picture>
               <h2>{item.title}</h2>
               <div>
                 <p>Antal</p>
@@ -56,15 +51,14 @@ const ShoppingCart = () => {
                 </p>
               </figcaption>
             </Cart>
-          ))}
+          ))} */}
 
           <article>
             <div>
-              <h4>Beløb {subtotal} DKK </h4>
+              <h4>pris {subtotal} DKK </h4>
 
-              <>{cartItems > [1] ? <Button_Delete onClick={() => setEmptyCart()}>Tøm kurven</Button_Delete> : null}</>
+              {/* <>{cartItems > [1] ? <Button_Delete onClick={() => setEmptyCart()}>Tøm kurven</Button_Delete> : null}</> */}
             </div>
-            <Button_Styled onClick={() => navigate("/checkout")}>Til kassen</Button_Styled>
           </article>
         </>
       ) : (

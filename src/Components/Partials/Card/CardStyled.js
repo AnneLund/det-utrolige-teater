@@ -1,19 +1,27 @@
 import styled from "styled-components";
 
 export const Card = styled.figure`
-  height: ${(props) => (props.listitem ? "20vh" : "auto")};
+  width: 100%;
   display: flex;
   margin: 0 auto;
+  height: auto;
   justify-content: space-between;
   flex-direction: ${(props) => (props.column ? "column-reverse" : props.listitem ? "row-reverse" : "row")};
   border: 1px solid ${(props) => props.theme.colors.secondary};
 
+  picture {
+    position: relative;
+    width: ${(props) => (props.listitem ? "100px" : "100%")};
+    @media (max-width: ${(props) => props.theme.breakPoints.tablet.value}) {
+      width: 100%;
+    }
+  }
   img {
-    width: 100%;
-    height: 100%;
-    border: 10px solid ${(props) => props.theme.colors.secondary};
+    border: ${(props) => (props.listitem ? `3px solid #AD7A51` : `10px solid #AD7A51`)};
     object-fit: cover;
-    aspect-ratio: ${(props) => (props.column ? "1/1" : "2/1")};
+    object-position: center;
+    height: ${(props) => (props.listitem ? "100px" : "100%")};
+    aspect-ratio: ${(props) => (props.column ? "1/1" : "2.5/1")};
   }
 
   figcaption {
@@ -21,27 +29,47 @@ export const Card = styled.figure`
     display: flex;
     align-items: center;
     flex-direction: ${(props) => (props.listitem ? "row-reverse" : "column")};
-    justify-content: ${(props) => (props.listitem ? "left" : "end")};
+    justify-content: ${(props) => (props.column ? "space-between" : "center")};
     padding: ${(props) => (props.listitem ? "0.5em" : "1em 2em 0")};
     width: 100%;
 
     h2 {
-      font-size: 2vw;
+      font-size: ${(props) => (props.listitem ? "2.3vw" : "3vw")};
+
       @media screen and (max-width: ${(props) => props.theme.breakPoints.tablet.value}) {
+        font-size: 5vw;
+      }
+    }
+
+    .date,
+    .location {
+      font-size: 1em;
+      @media (max-width: ${(props) => props.theme.breakPoints.tablet.value}) {
+        font-size: 2vw;
+      }
+
+      @media (max-width: ${(props) => props.theme.breakPoints.tablet.value}) {
         font-size: 3vw;
       }
     }
 
     div {
-      padding-bottom: 1em;
       width: 100%;
-      height: 80%;
+      height: ${(props) => (props.listitem ? "80px" : "150px")};
       display: flex;
       flex-direction: column;
-      justify-content: ${(props) => (props.column === false ? "end" : "center")};
+      justify-content: ${(props) => (props.column === false ? "end" : "top")};
 
       :first-child {
+        height: 60px;
         border-bottom: ${(props) => (props.listitem ? "none" : "#dfdfdf solid 1px")};
+      }
+
+      :nth-child(2) {
+        height: ${(props) => (props.listitem ? "60px" : "160px")};
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
       }
     }
 
@@ -51,7 +79,9 @@ export const Card = styled.figure`
     }
 
     .buttons {
+      margin-top: 1em;
       display: flex;
+      justify-content: flex-end;
       flex-direction: row;
       align-items: center;
     }
@@ -65,17 +95,17 @@ export const Card = styled.figure`
       display: flex;
       justify-content: flex-end;
       width: 100%;
-      margin-bottom: 1em;
+      margin: 1em 0;
     }
 
     @media (max-width: ${(props) => props.theme.breakPoints.tablet.value}) {
       flex-direction: ${(props) => (props.listitem ? "column-reverse" : "column")};
-      text-align: center;
+      text-align: right;
     }
   }
 
   @media (max-width: ${(props) => props.theme.breakPoints.tablet.value}) {
-    flex-direction: ${(props) => (props.listitem ? "column-reverse" : "column")};
+    flex-direction: column-reverse;
     height: auto;
   }
 `;

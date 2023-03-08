@@ -125,6 +125,8 @@ export const Menu = styled.ul`
     z-index: 50000;
     position: relative;
     margin: 4em 0 0 0;
+    top: -5em;
+    padding: 0 0.5em;
     height: ${({ isOpen }) => (isOpen ? "200vh" : "0")};
   }
 
