@@ -3,13 +3,13 @@ import styled from "styled-components";
 import AppService from "../Appservices/Appservice";
 import { useForm } from "react-hook-form";
 import useFlashMessageStore from "../FlashMessages/useFlashMessageStore";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useLoginStore } from "../../Pages/Login/useLoginStore";
 import { useShoppingCardStore } from "../ShoppingCart/useShoppingCard";
 import { Counter } from "./Shop/CounterStyled";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 import SendButton from "./Buttons/SendButton";
-import SubmitOrder from "./Shop/SubmitOrder";
+import { useCustomInfoStore } from "./Shop/CustomerInfo/useCostumInfoStore";
 
 const MyForm = styled.form`
   display: flex;
@@ -55,13 +55,14 @@ const MyForm = styled.form`
 `;
 
 export const Form = ({ item }) => {
-  // console.log(isupdated);
-  // console.log(review);
   const { userInfo } = useLoginStore();
   const [eventID, setEventID] = useState(1);
-  const { id } = useParams();
-  const [count, setCount] = useState(1);
+  const navigate = useNavigate();
+  const [count, setCount] = useState(0);
   const { setFlashMessage } = useFlashMessageStore();
+  const [formData, setFormData] = useState({});
+
+  const { increaseCustomInfo, decreaseCustomInfo, customDetails } = useCustomInfoStore();
   const { increaseCartQuantity, decreaseCartQuantity, setEmptyCart, cartItems } = useShoppingCardStore();
   const {
     register,
@@ -74,13 +75,13 @@ export const Form = ({ item }) => {
   const onSubmit = async (data) => {
     const postData = {
       user_id: data.user_id,
-      event_id: id,
+      event_id: eventID,
       firstname: data.firstname,
       lastname: data.lastname,
       address: data.address,
       city: data.city,
       email: data.email,
-      seats: data.seats,
+      seats: data.seats[eventID],
     };
 
     try {
@@ -88,10 +89,11 @@ export const Form = ({ item }) => {
       console.log(response);
       if (response.status) {
         setEventID(response.data.new_id);
+
         setFlashMessage("Sendt!");
-        // setTimeout(() => {
-        //   navigate();
-        // }, 2000);
+        setTimeout(() => {
+          navigate(`/event/submit/${response.data.new_id}`);
+        }, 2000);
         reset();
       }
     } catch (error) {
@@ -102,7 +104,7 @@ export const Form = ({ item }) => {
   const addClick = (event) => {
     event.preventDefault();
     setCount(count + 1);
-    increaseCartQuantity(item.id, item.startdate, item.stage_name, item.price, 1, item.title, item.image);
+    increaseCartQuantity(item.id, item.price, 1, item.title, item.image, item.startdate, item.stage_name);
   };
 
   const removeClick = (event) => {
@@ -128,6 +130,7 @@ export const Form = ({ item }) => {
   let subtotal = 0;
   cartItems.forEach((item) => (subtotal += item.price * item.amount));
 
+  console.log(formData);
   return (
     <MyForm onSubmit={handleSubmit(onSubmit)}>
       <input type="hidden" {...register("event_id")} value={eventID} />
@@ -135,19 +138,34 @@ export const Form = ({ item }) => {
 
       <div className="form-element">
         <label>Fornavn</label>
-        <input type="text" {...register("firstname", { required: true })} />
+        <input
+          name="firstname"
+          onChange={(e) => setFormData({ ...formData, [e.target.firstname]: e.target.value })}
+          type="text"
+          {...register("firstname", { required: true })}
+        />
         {errors.firstname?.type === "required" && <p role="alert">Fornavn er påkrævet</p>}
       </div>
 
       <div className="form-element">
         <label htmlFor="lastname">Efternavn</label>
-        <input type="text" {...register("lastname", { required: true })} />
+        <input
+          name="lastname"
+          onChange={(e) => setFormData({ ...formData, [e.target.lastname]: e.target.value })}
+          type="text"
+          {...register("lastname", { required: true })}
+        />
         {errors.lastname?.type === "required" && <p role="alert">Efternavn er påkrævet</p>}
       </div>
 
       <div className="form-element">
         <label htmlFor="address">Vejnavn & Nr</label>
-        <input type="text" {...register("address", { required: true })} />
+        <input
+          name="address"
+          onChange={(e) => setFormData({ ...formData, [e.target.address]: e.target.value })}
+          type="text"
+          {...register("address", { required: true })}
+        />
         {errors.address?.type === "required" && <p role="alert">Adresse er påkrævet</p>}
       </div>
 
@@ -155,12 +173,13 @@ export const Form = ({ item }) => {
         <label htmlFor="city">Postnummer & by</label>
         <input
           type="text"
-          name="city"
+          name="zipcodeCity"
           {...register("zipcodeCity", { required: true })}
           onChange={(e) => {
             const [zipcode, city] = e.target.value.split(" ");
             setValue("zipcode", zipcode);
             setValue("city", city);
+            setFormData({ ...formData, [e.target.zipcodeCity]: e.target.value });
           }}
         />
 
@@ -169,7 +188,14 @@ export const Form = ({ item }) => {
 
       <div className="form-element">
         <label htmlFor="email">Email</label>
-        <input type="email" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" {...register("email", { required: true })} />
+        <input
+          onChange={(e) => setFormData({ ...formData, [e.target.email]: e.target.value })}
+          type="email"
+          id="email"
+          name="email"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+          {...register("email", { required: true })}
+        />
         {errors.email?.type === "required" && <p role="alert">Email er påkrævet</p>}
       </div>
 
@@ -190,9 +216,7 @@ export const Form = ({ item }) => {
         </footer>
       </Counter>
 
-      <SendButton right={true}>
-        <Link to={`/event/submit/${eventID}`}> Godkend bestilling</Link>
-      </SendButton>
+      <SendButton position={true}>Godkend bestilling</SendButton>
     </MyForm>
   );
 };

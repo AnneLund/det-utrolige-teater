@@ -9,10 +9,10 @@ import { Ticket } from "./Ticket";
 
 const SubmitOrder = () => {
   const { cartItems } = useShoppingCardStore();
-  console.log(cartItems);
 
   const { reservation_id } = useParams();
   const { state: reservations } = useGetListItemsByEndPoint("reservations", reservation_id);
+
   console.log(reservations);
   return (
     <Page title="Godkend ordre">
@@ -32,13 +32,13 @@ const SubmitOrder = () => {
                   <h4>Produkter:</h4>
                   <ul>
                     <li>
-                      <h5>Forestilling: {product.stage_name}</h5>
+                      <h5>Forestilling: {product.title}</h5>
                     </li>
                     <li>
-                      <h5>Scene:</h5>
+                      <h5>Scene: {product.stage_name}</h5>
                     </li>
                     <li>
-                      <h5>Dato:</h5>
+                      <h5>Dato: {product.startdate}</h5>
                     </li>
                   </ul>
                 </article>
@@ -47,17 +47,18 @@ const SubmitOrder = () => {
 
                 <article>
                   <h4>Kunde:</h4>
-                  <ul>
-                    <li>
-                      <h5>gewgwergweg</h5>
-                    </li>
-                    <li>
-                      <h5>gewgqegewg</h5>
-                    </li>
-                    <li>
-                      <h5>Email: egqgqegqeg</h5>
-                    </li>
-                  </ul>
+
+                  {reservations.items.map((custom) => (
+                    <ul key={custom.id}>
+                      <li>
+                        {custom.firstname} {custom.lastname}
+                      </li>
+                      <li>
+                        <h5>Email: egqgqegqeg</h5>
+                      </li>
+                    </ul>
+                  ))}
+
                   <footer>
                     <h4>Billetterne sendes elektronisk til din email</h4>
                   </footer>

@@ -9,6 +9,7 @@ import Login from "../../Pages/Login/Login";
 import BuyTicket from "../Partials/Shop/BuyTicket";
 import SubmitOrder from "../Partials/Shop/SubmitOrder";
 import Thankyou from "../Partials/Shop/Thankyou";
+import Admin from "../../Pages/Admin/Admin";
 
 const Router = () => {
   return (
@@ -21,6 +22,7 @@ const Router = () => {
       <Route path="/event/buyticket/:id" element={<BuyTicket />} />
       <Route path="/event/submit/:id" element={<SubmitOrder />} />
       <Route path="/thankyou" element={<Thankyou />} />
+      <Route path="/admin" element={<Admin />} />
       {/* <Route path="/products" element={<Categories />}>
         <Route path="/products/:id" element={<Products />} />
       </Route>

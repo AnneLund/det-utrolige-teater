@@ -11,9 +11,9 @@ const MyButton = styled.button`
   text-transform: uppercase;
   font-family: "Titillium Web", sans-serif;
   font-size: 1.3em;
-  position: ${(props) => (props.right ? "absolute" : null)};
+  position: ${(props) => (props.position ? "absolute" : null)};
   right: -1em;
-  bottom: -8em;
+  bottom: -10em;
   font-weight: 600;
   float: ${(props) => (props.right ? "right" : null)};
   cursor: pointer;
@@ -31,7 +31,11 @@ const MyButton = styled.button`
 `;
 
 const SendButton = (props) => {
-  return <MyButton right={props.right}>{props.children}</MyButton>;
+  return (
+    <MyButton position={props.position} right={props.right}>
+      {props.children}
+    </MyButton>
+  );
 };
 
 export default SendButton;

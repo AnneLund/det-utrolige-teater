@@ -18,13 +18,13 @@ export const useShoppingCardStore = create(
           ],
         })),
 
-      increaseCartQuantity: (id, price, quantity, title, image, stage_name, startdate) =>
+      increaseCartQuantity: (id, price, quantity, title, image, startdate, stage_name) =>
         set((state) => {
           if (state.cartItems.find((item) => item.id === id) == null) {
             return {
               cartItems: [
                 ...state.cartItems,
-                { id: id, price: price, amount: 1 * quantity, title: title, image: image, stage_name, startdate: startdate },
+                { id: id, price: price, amount: 1 * quantity, title: title, image: image, startdate: startdate, stage_name: stage_name },
               ],
             };
           } else {
@@ -48,13 +48,13 @@ export const useShoppingCardStore = create(
 
       //**FUNTION START */
 
-      decreaseCartQuantity: (id, price, quantity, title, image, stage_name, startdate) =>
+      decreaseCartQuantity: (id, price, quantity, title, image, startdate, stage_name) =>
         set((state) => {
           if (state.cartItems.find((item) => item.id === id) == null) {
             return {
               cartItems: [
                 ...state.cartItems,
-                { id: id, price: price, amount: 1 * quantity, title: title, image: image, stage_name, startdate: startdate },
+                { id: id, price: price, amount: 1 * quantity, title: title, image: image, startdate: startdate, stage_name: stage_name },
               ],
             };
           } else {
@@ -78,6 +78,6 @@ export const useShoppingCardStore = create(
 
       //**FUNCTION END */
     }),
-    { name: "zustandCart", storage: createJSONStorage(() => localStorage) }
+    { name: "Cart", storage: createJSONStorage(() => localStorage) }
   )
 );

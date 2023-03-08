@@ -7,7 +7,7 @@ export const Ticket = styled.figure`
   border: 1px solid ${(props) => props.theme.colors.secondary};
 
   picture {
-    width: 50%;
+    width: 40%;
 
     @media (max-width: ${(props) => props.theme.breakPoints.tablet.value}) {
       width: 100%;

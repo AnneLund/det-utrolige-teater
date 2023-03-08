@@ -40,9 +40,9 @@ const RandomEvents = () => {
             </div>
             <footer>
               <Button readmore={true}>Læs mere</Button>
-              <BuyButton>
+              <Button>
                 <Link to={`/event/buyticket/${event.id}`}>Køb billet</Link>
-              </BuyButton>
+              </Button>
             </footer>
           </figcaption>
           <picture>

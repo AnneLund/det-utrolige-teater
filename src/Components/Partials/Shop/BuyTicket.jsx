@@ -2,7 +2,6 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { Page } from "../../../Layout/Page";
 import ContactForm from "../ContactForm";
-import Table from "./Table";
 import { Ticket } from "./Ticket";
 import useGetListItemById from "../../Hooks/useGetListItemById";
 

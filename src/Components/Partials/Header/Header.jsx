@@ -57,11 +57,8 @@ const Header = () => {
 
             {loggedIn ? (
               <>
-                <li
-                  onClick={() => {
-                    setLoggedIn(false, "", "", "");
-                  }}>
-                  <NavLink onClick={handleButtonClick}>Log ud</NavLink>
+                <li>
+                  <NavLink to="/admin">Min side</NavLink>
                 </li>
               </>
             ) : (
