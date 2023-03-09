@@ -75,7 +75,7 @@ export const Form = ({ item }) => {
   const onSubmit = async (data) => {
     const postData = {
       user_id: data.user_id,
-      event_id: eventID,
+      event_id: item.id,
       firstname: data.firstname,
       lastname: data.lastname,
       address: data.address,
@@ -89,7 +89,7 @@ export const Form = ({ item }) => {
       console.log(response);
       if (response.status) {
         setEventID(response.data.new_id);
-
+        increaseCustomInfo(formData);
         setFlashMessage("Sendt!");
         setTimeout(() => {
           navigate(`/event/submit/${response.data.new_id}`);
@@ -122,9 +122,10 @@ export const Form = ({ item }) => {
     }
   }, [count]);
 
-  const handleCountChange = (event) => {
+  const handleCountChange = (event, e) => {
     const newCount = Number(event.target.value);
     setCount(newCount);
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   let subtotal = 0;
@@ -140,9 +141,9 @@ export const Form = ({ item }) => {
         <label>Fornavn</label>
         <input
           name="firstname"
-          onChange={(e) => setFormData({ ...formData, [e.target.firstname]: e.target.value })}
           type="text"
           {...register("firstname", { required: true })}
+          onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
         />
         {errors.firstname?.type === "required" && <p role="alert">Fornavn er påkrævet</p>}
       </div>
@@ -151,9 +152,9 @@ export const Form = ({ item }) => {
         <label htmlFor="lastname">Efternavn</label>
         <input
           name="lastname"
-          onChange={(e) => setFormData({ ...formData, [e.target.lastname]: e.target.value })}
           type="text"
           {...register("lastname", { required: true })}
+          onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
         />
         {errors.lastname?.type === "required" && <p role="alert">Efternavn er påkrævet</p>}
       </div>
@@ -162,9 +163,9 @@ export const Form = ({ item }) => {
         <label htmlFor="address">Vejnavn & Nr</label>
         <input
           name="address"
-          onChange={(e) => setFormData({ ...formData, [e.target.address]: e.target.value })}
           type="text"
           {...register("address", { required: true })}
+          onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
         />
         {errors.address?.type === "required" && <p role="alert">Adresse er påkrævet</p>}
       </div>
@@ -179,7 +180,7 @@ export const Form = ({ item }) => {
             const [zipcode, city] = e.target.value.split(" ");
             setValue("zipcode", zipcode);
             setValue("city", city);
-            setFormData({ ...formData, [e.target.zipcodeCity]: e.target.value });
+            setFormData({ ...formData, [e.target.name]: e.target.value });
           }}
         />
 
@@ -189,12 +190,12 @@ export const Form = ({ item }) => {
       <div className="form-element">
         <label htmlFor="email">Email</label>
         <input
-          onChange={(e) => setFormData({ ...formData, [e.target.email]: e.target.value })}
           type="email"
           id="email"
           name="email"
           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
           {...register("email", { required: true })}
+          onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
         />
         {errors.email?.type === "required" && <p role="alert">Email er påkrævet</p>}
       </div>

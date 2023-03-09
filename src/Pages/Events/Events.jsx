@@ -107,7 +107,7 @@ const Events = () => {
             )}
           </>
         ) : (
-          <p>Kunne ikke indlæse data..</p>
+          <p>Indlæser..</p>
         )}
       </EventsContainer>
     </Page>

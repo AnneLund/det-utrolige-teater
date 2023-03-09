@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 export const AdminStyled = styled.section`
-  padding: 1em 0;
+  padding: 0 1em;
   display: grid;
+  border: 1px solid ${(props) => props.theme.colors.secondary};
   grid-template-columns: 1fr 0.2fr;
   height: 100%;
   article {
@@ -15,13 +16,19 @@ export const AdminStyled = styled.section`
       "B B"
       "C C";
 
-    h2 {
+    h1 {
       grid-area: A;
       margin: 1em 0;
     }
 
     h3 {
       grid-area: B;
+      font-size: 2em;
+      display: flex;
+      align-items: center;
+      span {
+        padding: 5px;
+      }
     }
     .table-wrapper {
       width: 100%;
@@ -77,9 +84,10 @@ export const AdminStyled = styled.section`
     height: 80%;
     padding: 1em;
     margin: 0 1em;
-    border-left: #70707090 solid 2px;
+
     h4 {
       margin-bottom: 1em;
+      font-size: 1em;
     }
   }
 

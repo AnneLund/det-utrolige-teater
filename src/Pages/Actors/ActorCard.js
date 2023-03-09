@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ActorCard = styled.figure`
   display: grid;
-  grid-template-columns: 0.5fr repeat(2, 1fr);
+  grid-template-columns: 0.5fr auto 0.5fr;
 
   figcaption {
     padding: 0 1em;
@@ -16,13 +16,13 @@ export const ActorCard = styled.figure`
     p {
       color: ${(props) => props.theme.colors.primary};
     }
+
+    .figcaption {
+      width: 75%;
+    }
   }
 
-  footer {
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    align-items: flex-end;
+  .button {
   }
 
   @media screen and (max-width: ${(props) => props.theme.breakPoints.tablet.value}) {

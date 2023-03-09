@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Button from "../../Components/Partials/Buttons/ButtonOne";
 import { Page } from "../../Layout/Page";
 import { ActorCard } from "./ActorCard";
@@ -23,7 +24,9 @@ const ActorDetails = () => {
           </figcaption>
         </ActorCard>
         <div className="button">
-          <Button secondary={true}>Alle skuespillere</Button>
+          <Button secondary={true}>
+            <Link to="/actors">Alle skuespillere</Link>
+          </Button>
         </div>
       </Page>
     </>

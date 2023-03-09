@@ -20,6 +20,10 @@ export const Ticket = styled.figure`
     aspect-ratio: 1/2;
   }
 
+  li {
+    text-transform: uppercase;
+  }
+
   figcaption {
     width: 100%;
     padding: 0 1em;

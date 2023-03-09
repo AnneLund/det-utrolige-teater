@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 const MyButton = styled.button`
   margin-left: 20px;
-  width: ${(props) => (props.listitem ? "120px" : "170px")};
-  height: ${(props) => (props.listitem ? "50px" : "80px")};
+  width: ${(props) => (props.listitem ? "120px" : "160px")};
+  height: ${(props) => (props.listitem ? "50px" : "70px")};
   border: none;
   color: white;
   text-transform: uppercase;
@@ -12,7 +12,8 @@ const MyButton = styled.button`
   font-size: ${(props) => (props.secondary ? "1em" : "1.3em")};
   font-weight: 600;
   cursor: pointer;
-  background-color: ${(props) => (props.readmore ? props.theme.colors.tertiary : props.theme.colors.primary)};
+  background-color: ${(props) =>
+    props.logout ? props.theme.colors.secondary : props.readmore ? props.theme.colors.tertiary : props.theme.colors.primary};
   &:hover {
     background-color: #00000099;
     transition: 300ms ease-in-out;
@@ -27,7 +28,7 @@ const MyButton = styled.button`
 
 const Button = (props) => {
   return (
-    <MyButton readmore={props.readmore} secondary={props.secondary} listitem={props.listitem}>
+    <MyButton logout={props.logout} readmore={props.readmore} secondary={props.secondary} listitem={props.listitem}>
       {props.children}
     </MyButton>
   );

@@ -1,19 +1,28 @@
-import React from "react";
-import { Link, useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { Page } from "../../../Layout/Page";
+import AppService from "../../Appservices/Appservice";
+import useFlashMessageStore from "../../FlashMessages/useFlashMessageStore";
 import useGetListItemsByEndPoint from "../../Hooks/useGetListItemsByEndPoint";
 import { useShoppingCardStore } from "../../ShoppingCart/useShoppingCard";
 import BuyButton from "../Buttons/BuyButton";
+import { useCustomInfoStore } from "./CustomerInfo/useCostumInfoStore";
 import Table from "./Table";
 import { Ticket } from "./Ticket";
+import { useForm } from "react-hook-form";
+import { useLoginStore } from "../../../Pages/Login/useLoginStore";
+import LoadingBar from "../LoadingBar/Loading";
 
 const SubmitOrder = () => {
   const { cartItems } = useShoppingCardStore();
-
+  const { userInfo } = useLoginStore();
+  const { customDetails } = useCustomInfoStore();
   const { reservation_id } = useParams();
+  const [eventID, setEventID] = useState(1);
+  const navigate = useNavigate();
+  const { setFlashMessage } = useFlashMessageStore();
   const { state: reservations } = useGetListItemsByEndPoint("reservations", reservation_id);
 
-  console.log(reservations);
   return (
     <Page title="Godkend ordre">
       {reservations && reservations.items && cartItems ? (
@@ -48,16 +57,14 @@ const SubmitOrder = () => {
                 <article>
                   <h4>Kunde:</h4>
 
-                  {reservations.items.map((custom) => (
-                    <ul key={custom.id}>
-                      <li>
-                        {custom.firstname} {custom.lastname}
-                      </li>
-                      <li>
-                        <h5>Email: egqgqegqeg</h5>
-                      </li>
-                    </ul>
-                  ))}
+                  <ul>
+                    <li>
+                      {customDetails[0].id.firstname} {customDetails[0].id.lastname}
+                    </li>
+                    <li>{customDetails[0].id.address}</li>
+                    <li>{customDetails[0].id.zipcodeCity}</li>
+                    <li>Email: {customDetails[0].id.email}</li>
+                  </ul>
 
                   <footer>
                     <h4>Billetterne sendes elektronisk til din email</h4>
@@ -72,7 +79,7 @@ const SubmitOrder = () => {
               <Link to="/event/buyticket">Tilbage</Link>
             </BuyButton>
             <BuyButton>
-              <Link to="/thankyou">Godkend bestilling</Link>
+              <Link to="/thankyou">Godkend ordre</Link>
             </BuyButton>
           </div>
         </>

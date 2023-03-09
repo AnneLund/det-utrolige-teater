@@ -2,33 +2,22 @@ import React, { useEffect, useState } from "react";
 import AppService from "../../../Components/Appservices/Appservice";
 import { useLoginStore } from "../../Login/useLoginStore";
 import { AdminStyled } from "../AdminStyled";
-import Transitions from "../../../Styles/Transition";
-import { useNavigate } from "react-router-dom";
-import { useModalStore } from "../../../Components/Modal/useModalStore";
-import Form from "../../../Components/Partials/Form";
-import styled from "styled-components";
+import { useNavigate, useParams } from "react-router-dom";
 import Button from "../../../Components/Partials/Buttons/ButtonOne";
-import { useShoppingCardStore } from "../../../Components/ShoppingCart/useShoppingCard";
 import { TiDeleteOutline } from "react-icons/ti";
+import { TiTicket } from "react-icons/ti";
 
-const Table = styled.tr``;
-
-const Reservations = ({ reviewID, isupdated }) => {
+const Reservations = ({ events }) => {
   const { userInfo, loggedIn, setLoggedIn } = useLoginStore();
   const [reservations, setReservations] = useState([]);
   const [deleted, setDeleted] = useState(false);
   const navigate = useNavigate();
-  // console.log(isupdated);
-  const { setModalPayload } = useModalStore();
-  const { cartItems, setDeleteItem } = useShoppingCardStore();
-  const updated = true;
-
-  console.log(reservations);
+  const { id } = useParams();
 
   useEffect(() => {
     const renderReservations = async () => {
       try {
-        const response = await AppService.GetList("reservations");
+        const response = await AppService.GetList("reservations", id);
         if (response.data) {
           setReservations(response.data.items);
         }
@@ -38,13 +27,26 @@ const Reservations = ({ reviewID, isupdated }) => {
     };
 
     renderReservations();
-  }, [deleted, reviewID]);
+  }, [deleted, id]);
+
+  let reservedEvents = reservations?.map((reservation) => {
+    const event = events.find((event) => event.id === reservation.event_id);
+    return {
+      ...event,
+      reservation_id: reservation.id,
+    };
+  });
 
   return (
     <AdminStyled>
       <article>
-        <h2>Min side</h2>
-        <h3>Mine reservationer</h3>
+        <h1>Min side</h1>
+        <h3>
+          <span>
+            <TiTicket size={40} />
+          </span>
+          Mine reservationer
+        </h3>
         <div className="table-wrapper">
           <table>
             <thead>
@@ -58,67 +60,37 @@ const Reservations = ({ reviewID, isupdated }) => {
               </tr>
             </thead>
             <tbody>
-              {/* {reservations?.map((item) => {
-                return (
-                  <tr key={item.id}>
-                    <td>{item.startdate}</td>
-                    <td>{item.event_title}</td>
-                    <td>{item.stage_name}</td>
-                    <td>{item.amount}</td>
-                    <td>{item.price}</td>
-                    <td>
-                      <button
-                        onClick={() => {
-                          setModalPayload(<Form review={item} isupdated={updated} />);
-                        }}>
-                        Opdater
-                      </button>
-                      <button
-                        className="delete"
-                        value={item.id}
-                        onClick={() => {
-                          AppService.Delete("reservations", item.id);
-                          setDeleteItem(item.id, () => {
-                            setDeleted((prevDeleted) => !prevDeleted);
-                          });
-                        }}>
-                        Slet
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })} */}
-
-              {cartItems?.map((item) => {
-                return (
-                  <tr key={item.id}>
-                    <td>{item.startdate}</td>
-                    <td>{item.title}</td>
-                    <td>{item.stage_name}</td>
-                    <td>{item.amount}</td>
-                    <td>{item.price}</td>
-                    <td>
-                      {/* <button
-                        onClick={() => {
-                          setModalPayload(<Form review={item} isupdated={updated} />);
-                        }}>
-                        Opdater
-                      </button> */}
-                      <button
-                        className="delete"
-                        value={item.id}
-                        onClick={() => {
-                          AppService.Delete("reservations", item.id);
-                          setDeleteItem(item.id, () => {
-                            setDeleted((prevDeleted) => !prevDeleted);
-                          });
-                        }}>
-                        <TiDeleteOutline size={20} />
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
+              {reservations && reservedEvents ? (
+                <>
+                  {reservedEvents?.map((item) => {
+                    return (
+                      <tr key={item.id}>
+                        <td>{item.startdate}</td>
+                        <td>{item.title}</td>
+                        <td>{item.stage_name}</td>
+                        <td>{item.amount}</td>
+                        <td>{item.price}</td>
+                        <td>
+                          <button
+                            className="delete"
+                            value={item.id}
+                            onClick={async () => {
+                              const response = await AppService.Delete("reservations", item.reservation_id);
+                              console.log(response);
+                              setDeleted(!deleted);
+                            }}>
+                            <TiDeleteOutline size={20} />
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </>
+              ) : (
+                <tr>
+                  <th> Du har endnu ingen reservationer..</th>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>
@@ -132,7 +104,7 @@ const Reservations = ({ reviewID, isupdated }) => {
               setLoggedIn(false, "", "", "");
               navigate("/login");
             }}>
-            <Button>Log ud</Button>
+            <Button logout={true}>Log ud</Button>
           </li>
         ) : null}
       </div>
