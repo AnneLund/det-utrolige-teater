@@ -3,7 +3,7 @@ import { TiDeleteOutline } from "react-icons/ti";
 import { useLoginStore } from "../../../Pages/Login/useLoginStore";
 import AppService from "../../Appservices/Appservice";
 import useGetListItemByEndPoint from "../../Hooks/useGetListItemsByEndPoint";
-import { useShoppingCardStore } from "../../ShoppingCart/useShoppingCard";
+import { useShoppingCardStore } from "../Shop/useShoppingCard";
 import Rating from "../Rating";
 
 const MyReviews = () => {
@@ -20,6 +20,7 @@ const MyReviews = () => {
           <th>Forestilling</th>
           <th>Emne</th>
           <th>Antal stjerner</th>
+          <th>Rediger</th>
         </tr>
       </thead>
       <tbody>

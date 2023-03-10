@@ -1,9 +1,8 @@
-import React, { useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import React from "react";
+import { Link, useParams } from "react-router-dom";
 import { Page } from "../../../Layout/Page";
-import useFlashMessageStore from "../../FlashMessages/useFlashMessageStore";
 import useGetListItemsByEndPoint from "../../Hooks/useGetListItemsByEndPoint";
-import { useShoppingCardStore } from "../../ShoppingCart/useShoppingCard";
+import { useShoppingCardStore } from "../Shop/useShoppingCard";
 import BuyButton from "../Buttons/BuyButton";
 import { useCustomInfoStore } from "./CustomerInfo/useCostumInfoStore";
 import Table from "./Table";
@@ -19,52 +18,50 @@ const SubmitOrder = () => {
     <Page title="Godkend ordre">
       {reservations && reservations.items && cartItems ? (
         <>
-          {cartItems.map((product) => (
-            <Ticket key={product.id}>
-              <picture>
-                <img src={product.image} alt={product.title} />
-              </picture>
-              <figcaption>
-                <header>
-                  <h1>Godkend ordre</h1>
-                </header>
+          <Ticket>
+            {cartItems.map((product) => (
+              <figure>
+                <picture>
+                  <img src={product.image} alt={product.title} />
+                </picture>
+                <figcaption>
+                  <article>
+                    <h4>Produkt:</h4>
+                    <ul>
+                      <li>
+                        <h5>Forestilling: {product.title}</h5>
+                      </li>
+                      <li>
+                        <h5>Scene: {product.stage_name}</h5>
+                      </li>
+                      <li>
+                        <h5>Dato: {product.startdate}</h5>
+                      </li>
+                    </ul>
+                  </article>
 
-                <article>
-                  <h4>Produkter:</h4>
-                  <ul>
-                    <li>
-                      <h5>Forestilling: {product.title}</h5>
-                    </li>
-                    <li>
-                      <h5>Scene: {product.stage_name}</h5>
-                    </li>
-                    <li>
-                      <h5>Dato: {product.startdate}</h5>
-                    </li>
-                  </ul>
-                </article>
+                  <Table />
 
-                <Table />
+                  <article>
+                    <h4>Kunde:</h4>
 
-                <article>
-                  <h4>Kunde:</h4>
+                    <ul>
+                      <li>
+                        {customDetails[0].id.firstname} {customDetails[0].id.lastname}
+                      </li>
+                      <li>{customDetails[0].id.address}</li>
+                      <li>{customDetails[0].id.zipcodeCity}</li>
+                      <li>Email: {customDetails[0].id.email}</li>
+                    </ul>
 
-                  <ul>
-                    <li>
-                      {customDetails[0].id.firstname} {customDetails[0].id.lastname}
-                    </li>
-                    <li>{customDetails[0].id.address}</li>
-                    <li>{customDetails[0].id.zipcodeCity}</li>
-                    <li>Email: {customDetails[0].id.email}</li>
-                  </ul>
-
-                  <footer>
-                    <h4>Billetterne sendes elektronisk til din email</h4>
-                  </footer>
-                </article>
-              </figcaption>
-            </Ticket>
-          ))}
+                    <footer>
+                      <h4>Billetterne sendes elektronisk til din email</h4>
+                    </footer>
+                  </article>
+                </figcaption>
+              </figure>
+            ))}
+          </Ticket>
 
           <div className="button">
             <BuyButton>

@@ -48,9 +48,9 @@ const Events = () => {
                             <Link to={`/event/${event.id}`}>Læs mere</Link>
                           </Button>
 
-                          <button listitem={true}>
+                          <Button listitem={true}>
                             <Link to={`/event/buyticket/${event.id}`}>Køb billet</Link>
-                          </button>
+                          </Button>
                         </div>
                         <div className="list-item">
                           <h5 className="location">{event.stage_name}</h5>

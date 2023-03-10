@@ -2,7 +2,10 @@ import React from "react";
 import { Card } from "./Card/CardStyled";
 import useGetListItemsByEndPoint from "../Hooks/useGetListItemsByEndPoint";
 
+//ForsideEvent efter eget valg
+
 const HighlightedEvent = () => {
+  //fetcher event vha en hook
   const { state: events } = useGetListItemsByEndPoint("events");
 
   return (

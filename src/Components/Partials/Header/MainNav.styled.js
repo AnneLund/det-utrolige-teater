@@ -82,7 +82,7 @@ export const Hamburger = styled.div`
   span {
     height: 5px;
     width: 25px;
-    background-color: ${(props) => props.theme.colors.secondary};
+    background-color: #ad7a5189;
     margin-bottom: 4px;
     border-radius: 5px;
 

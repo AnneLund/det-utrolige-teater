@@ -4,14 +4,12 @@ import useGetListItemsByEndPoint from "../Hooks/useGetListItemsByEndPoint";
 import Button from "./Buttons/ButtonOne";
 import { Card } from "./Card/CardStyled";
 import { GridContainer } from "../../Styles/GridContainer";
-import { useShoppingCardStore } from "../ShoppingCart/useShoppingCard";
-import BuyButton from "./Buttons/BuyButton";
 
 const RandomEvents = () => {
   const { state: events } = useGetListItemsByEndPoint("events");
   const [randomEvents, setRandomEvents] = useState([]);
 
-  //Jeg tjekker om homes og homes.items eksisterer, inden jeg tilgår det.
+  //Jeg tjekker om events og events.items eksisterer, inden jeg tilgår det.
   useMemo(() => {
     if (events && events.items) {
       const shuffledEvents = events.items

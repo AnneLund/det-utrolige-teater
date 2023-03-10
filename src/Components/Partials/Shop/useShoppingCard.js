@@ -1,12 +1,16 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 
+//Zustand: funktionen gemmer billetterne i localstorage
 export const useShoppingCardStore = create(
   persist(
     (set) => ({
       cartItems: [],
 
+      //tømmer kurven
       setEmptyCart: () => set(() => ({ cartItems: [] })),
+
+      //sletter item med specifikt id
       setDeleteItem: (id) =>
         set((state) => ({
           cartItems: [
@@ -16,6 +20,7 @@ export const useShoppingCardStore = create(
           ],
         })),
 
+      //tilføjer item med specifikt id hvis det ikke allerede eksisterer
       increaseCartQuantity: (id, price, quantity, title, image, startdate, stage_name) =>
         set((state) => {
           if (state.cartItems.find((item) => item.id === id) == null) {
@@ -26,17 +31,16 @@ export const useShoppingCardStore = create(
               ],
             };
           } else {
-            //**if item exists by id, increase the amount */
             return {
               cartItems: state.cartItems.map((item) => {
                 if (item.id === id) {
-                  //**return the found item with the new value */
+                  // Hvis det eksisterer, tilføjer den 1 til amount
                   return {
                     ...item,
                     amount: item.amount + quantity || 1,
                   };
                 } else {
-                  //**else return the found item as it is */
+                  //ellers returneres det som det er
                   return { ...item };
                 }
               }),
@@ -44,7 +48,9 @@ export const useShoppingCardStore = create(
           }
         }),
 
-      //**FUNTION START */
+      //**FUNKTION START */
+
+      //sletter item
 
       decreaseCartQuantity: (id, price, quantity, title, image, startdate, stage_name) =>
         set((state) => {

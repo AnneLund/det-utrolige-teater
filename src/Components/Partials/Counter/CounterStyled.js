@@ -1,15 +1,11 @@
 import styled from "styled-components";
 
-export const Counter = styled.div`
+export const CounterStyled = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 1em;
   width: 100%;
-
-  /* input {
-    background-color: #eeeeee;
-  } */
 
   button {
     background-color: #dedede;
@@ -28,6 +24,11 @@ export const Counter = styled.div`
       font-weight: 600;
       margin-bottom: -5px;
     }
+  }
+
+  .amount {
+    font-size: 1.5em;
+    margin: 1em;
   }
 
   @media (max-width: ${(props) => props.theme.breakPoints.tablet.value}) {

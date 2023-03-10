@@ -10,7 +10,7 @@ export const SearchResults = styled.article`
   button {
     position: absolute;
     top: -10vh;
-    right: 50px;
+    right: 0px;
     padding: 1em;
   }
 

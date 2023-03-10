@@ -18,10 +18,12 @@ export const EventsContainer = styled.article`
     select {
       width: 250px;
       height: 50px;
-      font-size: 1.5em;
+      padding: 5px;
+      font-size: 1.3em;
       border: 1px solid ${(props) => props.theme.colors.secondary};
       box-shadow: #000000 0.5px 0.5px 0.5px 0.5px;
       border-radius: 5px;
+      cursor: pointer;
     }
 
     @media screen and (max-width: ${(props) => props.theme.breakPoints.tablet.value}) {

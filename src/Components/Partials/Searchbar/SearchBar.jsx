@@ -8,7 +8,7 @@ const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [buttonClicked, setButtonClicked] = useState(false);
-  const { setModalPayload, setToggleModal } = useModalStore();
+  const { setModalPayload } = useModalStore();
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -16,7 +16,7 @@ const SearchBar = () => {
     setSearchResults([]);
 
     if (buttonClicked) {
-      fetch(`https://api.mediehuset.net/homelands/search/${searchTerm}`)
+      fetch(`https://api.mediehuset.net/detutroligeteater/events/search/${searchTerm}`)
         .then((res) => res.json())
 
         .then((data) => {
@@ -26,8 +26,10 @@ const SearchBar = () => {
     }
   };
 
+  console.log(searchResults);
+
   useEffect(() => {
-    fetch("https://api.mediehuset.net/homelands/homes")
+    fetch("https://api.mediehuset.net/detutroligeteater/events")
       .then((res) => res.json())
       .then((data) => setSearchResults(data.items));
   }, []); // empty dependency array
@@ -36,7 +38,6 @@ const SearchBar = () => {
     setButtonClicked(true);
     setModalPayload(
       <SearchResults>
-        <button onClick={() => setToggleModal("none")}>X</button>
         {searchResults.map((result, index) => (
           <figure key={index}>
             <picture>

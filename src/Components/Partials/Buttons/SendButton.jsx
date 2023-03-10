@@ -30,6 +30,7 @@ const MyButton = styled.button`
   }
 `;
 
+// Stylet knap med farver, alt efter dens propertys
 const SendButton = (props) => {
   return (
     <MyButton color={props.color} position={props.position} right={props.right}>
