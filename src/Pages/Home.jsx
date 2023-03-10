@@ -1,6 +1,6 @@
 import React from "react";
-import HighlightedEvent from "../Components/Partials/HighlightedEvent";
-import RandomEvents from "../Components/Partials/RandomEvents";
+import HighlightedEvent from "./Events/HighlightedEvent";
+import RandomEvents from "./Events/RandomEvents";
 import { Page } from "../Layout/Page";
 import SendButton from "../Components/Partials/Buttons/SendButton";
 import { Link } from "react-router-dom";

@@ -1,8 +1,8 @@
 import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import useGetListItemsByEndPoint from "../Hooks/useGetListItemsByEndPoint";
-import Button from "./Buttons/ButtonOne";
-import { Card } from "./Card/CardStyled";
+import useGetListItemsByEndPoint from "../../Components/Hooks/useGetListItemsByEndPoint";
+import Button from "../../Components/Partials/Buttons/ButtonOne";
+import { Card } from "../../Components/Partials/Card/CardStyled";
 import { GridContainer } from "../../Styles/GridContainer";
 
 const RandomEvents = () => {

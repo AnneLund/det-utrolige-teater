@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useLoginStore } from "../../../Pages/Login/useLoginStore";
 import Form from "./Form";
 import { ReviewsContainer } from "./ReviewsContainer";
 import { MdMessage } from "react-icons/md";
-import AppService from "../../Appservices/Appservice";
 import Login from "../../../Pages/Login/Login";
-import Rating from "../Rating";
-import useGetListItemsByEndPoint from "../../Hooks/useGetListItemsByEndPoint";
+
+//post af reviews
 
 const Reviews = ({ eventID }) => {
   const { loggedIn } = useLoginStore();

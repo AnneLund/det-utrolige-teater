@@ -1,6 +1,6 @@
 import React from "react";
-import { Card } from "./Card/CardStyled";
-import useGetListItemsByEndPoint from "../Hooks/useGetListItemsByEndPoint";
+import { Card } from "../../Components/Partials/Card/CardStyled";
+import useGetListItemsByEndPoint from "../../Components/Hooks/useGetListItemsByEndPoint";
 
 //ForsideEvent efter eget valg
 

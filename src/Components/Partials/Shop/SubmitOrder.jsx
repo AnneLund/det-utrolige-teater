@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { Page } from "../../../Layout/Page";
 import useGetListItemsByEndPoint from "../../Hooks/useGetListItemsByEndPoint";
 import { useShoppingCardStore } from "../Shop/useShoppingCard";
@@ -7,12 +7,23 @@ import BuyButton from "../Buttons/BuyButton";
 import { useCustomInfoStore } from "./CustomerInfo/useCostumInfoStore";
 import Table from "./Table";
 import { Ticket } from "./Ticket";
+import useFlashMessageStore from "../../FlashMessages/useFlashMessageStore";
 
 const SubmitOrder = () => {
   const { cartItems } = useShoppingCardStore();
   const { customDetails } = useCustomInfoStore();
   const { reservation_id } = useParams();
+  const navigate = useNavigate();
+  const { setFlashMessage } = useFlashMessageStore();
   const { state: reservations } = useGetListItemsByEndPoint("reservations", reservation_id);
+
+  //Funktion der håndtere onclick
+  const handleClick = () => {
+    setFlashMessage("Ordre afsendt!");
+    setTimeout(() => {
+      navigate("/thankyou");
+    }, 2000);
+  };
 
   return (
     <Page title="Godkend ordre">
@@ -64,7 +75,7 @@ const SubmitOrder = () => {
           </Ticket>
 
           <div className="button">
-            <BuyButton>
+            <BuyButton onClick={handleClick}>
               <Link to="/event/buyticket">Tilbage</Link>
             </BuyButton>
             <BuyButton>

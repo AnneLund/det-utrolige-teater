@@ -3,16 +3,13 @@ import { TiDeleteOutline } from "react-icons/ti";
 import { useLoginStore } from "../../../Pages/Login/useLoginStore";
 import AppService from "../../Appservices/Appservice";
 import useGetListItemByEndPoint from "../../Hooks/useGetListItemsByEndPoint";
-import { useShoppingCardStore } from "../Shop/useShoppingCard";
 import Rating from "../Rating";
 
 const MyReviews = () => {
-  const { userInfo, loggedIn, setLoggedIn } = useLoginStore();
+  const { userInfo } = useLoginStore();
   const { state: reviews } = useGetListItemByEndPoint("reviews");
-  const { cartItems, setDeleteItem } = useShoppingCardStore;
-  console.log(reviews);
-  console.log(userInfo);
   const [deleted, setDeleted] = useState(false);
+
   return (
     <table>
       <thead>

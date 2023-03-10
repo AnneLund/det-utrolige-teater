@@ -23,11 +23,6 @@ const Router = () => {
       <Route path="/event/submit/:id" element={<SubmitOrder />} />
       <Route path="/thankyou" element={<Thankyou />} />
       <Route path="/admin" element={<Admin />} />
-      {/* <Route path="/products" element={<Categories />}>
-        <Route path="/products/:id" element={<Products />} />
-      </Route>
-      <Route path="/productdetails/:id" element={<ProductDetails />} />
-      <Route path="/cart" element={<ShoppingCart />} /> */}
       <Route path="/login" element={<Login />} />
     </Routes>
   );

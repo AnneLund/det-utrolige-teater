@@ -26,13 +26,11 @@ const SearchBar = () => {
     }
   };
 
-  console.log(searchResults);
-
   useEffect(() => {
     fetch("https://api.mediehuset.net/detutroligeteater/events")
       .then((res) => res.json())
       .then((data) => setSearchResults(data.items));
-  }, []); // empty dependency array
+  }, []);
 
   const handleClick = () => {
     setButtonClicked(true);

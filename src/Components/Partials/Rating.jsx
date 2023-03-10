@@ -13,7 +13,7 @@ const Stars = styled.span`
   }
 `;
 
-const Rating = ({ onRatingChange, value: initialValue, numStars }) => {
+const Rating = ({ onRatingChange, value: initialValue }) => {
   const [rating, setRating] = useState(initialValue || 0);
 
   const handleClick = (value) => {

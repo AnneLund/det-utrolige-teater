@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import { Page } from "../../Layout/Page";
-import HighlightedEvent from "../../Components/Partials/HighlightedEvent";
+import HighlightedEvent from "../../Pages/Events/HighlightedEvent";
 import { EventsContainer } from "./EventsContainer";
 import { Card } from "../../Components/Partials/Card/CardStyled";
 import Button from "../../Components/Partials/Buttons/ButtonOne";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import useGetListItemsByEndPoint from "../../Components/Hooks/useGetListItemsByEndPoint";
 
 const Events = () => {
   const { state: events } = useGetListItemsByEndPoint("events");
   const [selectedOption, setSelectedOption] = useState("");
   const [filteredEvents, setFilteredEvents] = useState([]);
-  const { id } = useParams();
 
   const handleSelectChange = (event) => {
     const selectedGenre = event.target.value;

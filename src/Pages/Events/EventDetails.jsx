@@ -19,9 +19,9 @@ const EventDetails = () => {
       try {
         const response = await AppService.GetList("reviews");
         if (response.data) {
-          // Filter reviews with the same event_id
+          // Filtrerer reviews med det samme event_id
           const filteredReviews = response.data.items.filter((review) => review.event_id === id);
-          // Sort the reviews array in descending order based on the created date
+          // Sorterer i datoer, så det er de sidste nye kommentarer der fetches
           filteredReviews.sort((a, b) => new Date(b.created) - new Date(a.created));
           setReviews(filteredReviews.slice(0, 3));
         }
@@ -32,8 +32,6 @@ const EventDetails = () => {
 
     renderComments();
   }, [id]);
-
-  console.log(reviews);
 
   return (
     <Page title="Event - detaljer">

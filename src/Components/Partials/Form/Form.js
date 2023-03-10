@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import AppService from "../../Appservices/Appservice";
 import { useForm } from "react-hook-form";
-import useFlashMessageStore from "../../FlashMessages/useFlashMessageStore";
 import { useNavigate } from "react-router-dom";
 import { useLoginStore } from "../../../Pages/Login/useLoginStore";
 import { Counter } from "../Counter/Counter";
@@ -14,7 +13,6 @@ export const Form = ({ item }) => {
   const { userInfo } = useLoginStore();
   const [eventID, setEventID] = useState(1);
   const navigate = useNavigate();
-  const { setFlashMessage } = useFlashMessageStore();
   const [formData, setFormData] = useState({});
   const { increaseCustomInfo } = useCustomInfoStore();
 
@@ -46,10 +44,7 @@ export const Form = ({ item }) => {
       if (response.status) {
         setEventID(response.data.new_id);
         increaseCustomInfo(formData);
-        setFlashMessage("Sendt!");
-        setTimeout(() => {
-          navigate(`/event/submit/${response.data.new_id}`);
-        }, 2000);
+        navigate("/thankyou");
         reset();
       }
     } catch (error) {

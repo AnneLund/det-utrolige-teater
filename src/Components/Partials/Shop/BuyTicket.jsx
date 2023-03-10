@@ -4,10 +4,14 @@ import { Ticket } from "./Ticket";
 import useGetListItemById from "../../Hooks/useGetListItemById";
 import React from "react";
 import { Form } from "../Form/Form";
+import { useLoginStore } from "../../../Pages/Login/useLoginStore";
+
+// Køb af billetter
 
 const BuyTicket = () => {
   const { id } = useParams();
   const { state: events } = useGetListItemById("events", id);
+  const { loggedIn } = useLoginStore();
 
   return (
     <Page title="Køb billetter">
@@ -33,8 +37,7 @@ const BuyTicket = () => {
                   KL. {events.item.starttime}
                 </h5>
               </div>
-
-              <Form item={events.item} />
+              {loggedIn ? <Form item={events.item} /> : <p>Du skal være logget ind for at bestille billetter</p>}
             </figcaption>
           </figure>
         </Ticket>

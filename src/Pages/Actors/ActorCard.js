@@ -23,6 +23,7 @@ export const ActorCard = styled.figure`
   }
 
   .button {
+    margin: 3em;
   }
 
   @media screen and (max-width: ${(props) => props.theme.breakPoints.tablet.value}) {
