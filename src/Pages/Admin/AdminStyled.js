@@ -2,23 +2,32 @@ import styled from "styled-components";
 
 export const AdminStyled = styled.section`
   padding: 0 1em;
-  display: grid;
+
   border: 1px solid ${(props) => props.theme.colors.secondary};
-  grid-template-columns: 1fr 0.2fr;
+
   height: 100%;
   article {
     width: 100%;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(3, 0.1fr);
+    grid-template-rows: repeat(4, 0.1fr);
     grid-template-areas:
       "A A"
       "B B"
-      "C C";
+      "C C"
+      "D D";
 
-    h1 {
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       grid-area: A;
-      margin: 1em 0;
+      span {
+        display: flex;
+        flex-direction: column;
+        text-align: right;
+        font-size: 0.8em;
+      }
     }
 
     h3 {
@@ -67,6 +76,10 @@ export const AdminStyled = styled.section`
       }
     }
 
+    #reviews {
+      grid-area: D;
+    }
+
     @media screen and (max-width: ${(props) => props.theme.breakPoints.tablet.value}) {
       grid-template-columns: 1fr;
       grid-template-rows: auto auto auto auto;
@@ -75,7 +88,8 @@ export const AdminStyled = styled.section`
         "A"
         "B"
         "C"
-        "C";
+        "C"
+        "D";
     }
   }
 

@@ -4,13 +4,14 @@ import HighlightedEvent from "../../Components/Partials/HighlightedEvent";
 import { EventsContainer } from "./EventsContainer";
 import { Card } from "../../Components/Partials/Card/CardStyled";
 import Button from "../../Components/Partials/Buttons/ButtonOne";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useGetListItemsByEndPoint from "../../Components/Hooks/useGetListItemsByEndPoint";
 
 const Events = () => {
   const { state: events } = useGetListItemsByEndPoint("events");
   const [selectedOption, setSelectedOption] = useState("");
   const [filteredEvents, setFilteredEvents] = useState([]);
+  const { id } = useParams();
 
   const handleSelectChange = (event) => {
     const selectedGenre = event.target.value;
@@ -47,9 +48,9 @@ const Events = () => {
                             <Link to={`/event/${event.id}`}>Læs mere</Link>
                           </Button>
 
-                          <Button listitem={true}>
+                          <button listitem={true}>
                             <Link to={`/event/buyticket/${event.id}`}>Køb billet</Link>
-                          </Button>
+                          </button>
                         </div>
                         <div className="list-item">
                           <h5 className="location">{event.stage_name}</h5>

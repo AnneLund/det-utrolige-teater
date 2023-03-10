@@ -54,4 +54,41 @@ export const Globals = createGlobalStyle`${css`
     text-decoration: none;
     color: white;
   }
+
+  .table-wrapper {
+    width: 100%;
+    table {
+      width: 100%;
+      overflow-x: auto;
+      margin: 1em auto;
+      grid-area: C;
+      text-transform: uppercase;
+      thead,
+      tbody {
+        text-align: left;
+      }
+      th,
+      td {
+        border-bottom: 1px grey solid;
+        padding: 0.5em 0;
+      }
+
+      button {
+        border: none;
+        background-color: white;
+        margin-right: 1em;
+      }
+
+      .red {
+        color: green;
+        cursor: pointer;
+      }
+
+      .delete {
+        color: red;
+        cursor: pointer;
+        float: right;
+      }
+    }
+  }
 `}`;

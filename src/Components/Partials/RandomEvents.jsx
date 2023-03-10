@@ -39,7 +39,9 @@ const RandomEvents = () => {
               <p className="category"> {event.genre}</p>
             </div>
             <footer>
-              <Button readmore={true}>Læs mere</Button>
+              <Button readmore={true}>
+                <Link to={`/event/${event.id}`}>Læs mere</Link>
+              </Button>
               <Button>
                 <Link to={`/event/buyticket/${event.id}`}>Køb billet</Link>
               </Button>

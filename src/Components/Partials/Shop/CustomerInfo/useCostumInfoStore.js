@@ -76,6 +76,6 @@ export const useCustomInfoStore = create(
 
       //**FUNCTION END */
     }),
-    { name: "Cart", storage: createJSONStorage(() => localStorage) }
+    { name: "CustomerInfo", storage: createJSONStorage(() => localStorage) }
   )
 );

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Page } from "../../../Layout/Page";
-import AppService from "../../Appservices/Appservice";
 import useFlashMessageStore from "../../FlashMessages/useFlashMessageStore";
 import useGetListItemsByEndPoint from "../../Hooks/useGetListItemsByEndPoint";
 import { useShoppingCardStore } from "../../ShoppingCart/useShoppingCard";
@@ -9,18 +8,11 @@ import BuyButton from "../Buttons/BuyButton";
 import { useCustomInfoStore } from "./CustomerInfo/useCostumInfoStore";
 import Table from "./Table";
 import { Ticket } from "./Ticket";
-import { useForm } from "react-hook-form";
-import { useLoginStore } from "../../../Pages/Login/useLoginStore";
-import LoadingBar from "../LoadingBar/Loading";
 
 const SubmitOrder = () => {
   const { cartItems } = useShoppingCardStore();
-  const { userInfo } = useLoginStore();
   const { customDetails } = useCustomInfoStore();
   const { reservation_id } = useParams();
-  const [eventID, setEventID] = useState(1);
-  const navigate = useNavigate();
-  const { setFlashMessage } = useFlashMessageStore();
   const { state: reservations } = useGetListItemsByEndPoint("reservations", reservation_id);
 
   return (

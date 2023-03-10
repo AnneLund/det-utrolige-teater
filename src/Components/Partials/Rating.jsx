@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const Stars = styled.div`
+const Stars = styled.span`
   span {
     cursor: pointer;
     font-size: 30px;
@@ -9,15 +9,16 @@ const Stars = styled.div`
   }
 
   .filled {
-    color: #ffbf00;
+    color: ${(props) => props.theme.colors.primary};
   }
 `;
 
-const Rating = () => {
-  const [rating, setRating] = useState(0);
+const Rating = ({ onRatingChange, value: initialValue, numStars }) => {
+  const [rating, setRating] = useState(initialValue || 0);
 
   const handleClick = (value) => {
     setRating(value);
+    onRatingChange(value); // Call the callback function with the rating value
   };
 
   const renderStars = () => {
@@ -32,12 +33,7 @@ const Rating = () => {
     return stars;
   };
 
-  return (
-    <div>
-      <Stars>{renderStars()}</Stars>
-      {/* <p>You rated this item: {rating} stars</p> */}
-    </div>
-  );
+  return <Stars>{renderStars()}</Stars>;
 };
 
 export default Rating;

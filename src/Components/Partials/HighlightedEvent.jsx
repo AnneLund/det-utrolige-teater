@@ -30,7 +30,7 @@ const HighlightedEvent = () => {
           </Card>
         </>
       ) : (
-        <p>Kunne ikke hente data..</p>
+        <p>Indlæser data..</p>
       )}
     </>
   );

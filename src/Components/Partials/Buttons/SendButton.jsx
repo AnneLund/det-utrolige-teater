@@ -17,7 +17,7 @@ const MyButton = styled.button`
   font-weight: 600;
   float: ${(props) => (props.right ? "right" : null)};
   cursor: pointer;
-  background-color: ${(props) => props.theme.colors.secondary};
+  background-color: ${(props) => (props.color ? props.theme.colors.primary : props.theme.colors.secondary)};
   &:hover {
     background-color: #00000099;
     transition: 300ms ease-in-out;
@@ -32,7 +32,7 @@ const MyButton = styled.button`
 
 const SendButton = (props) => {
   return (
-    <MyButton position={props.position} right={props.right}>
+    <MyButton color={props.color} position={props.position} right={props.right}>
       {props.children}
     </MyButton>
   );
